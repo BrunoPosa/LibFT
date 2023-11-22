@@ -1,20 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 21:32:49 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/21 10:50:28 by bposa            ###   ########.fr       */
+/*   Created: 2023/11/20 20:19:39 by bposa             #+#    #+#             */
+/*   Updated: 2023/11/21 08:06:24 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
+#include "libft.h"
+
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	if (c >= 48 && c <= 57)
+	size_t	needlen;
+
+	needlen = ft_strlen(needle);
+	if (*needle == 0)
 	{
-		return (1);
+		return ((char *)haystack);
+	}
+	while (len > 0 && *(haystack) != '\0')
+	{
+		if (len >= needlen && ft_strncmp(needle, haystack, needlen) == 0)
+		{
+			return ((char *)haystack);
+		}
+		haystack++;
+		len--;
 	}
 	return (0);
 }

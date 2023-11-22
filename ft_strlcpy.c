@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 21:32:49 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/21 10:50:28 by bposa            ###   ########.fr       */
+/*   Created: 2023/11/08 15:42:26 by bposa             #+#    #+#             */
+/*   Updated: 2023/11/10 20:45:25 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
+#include "libft.h"
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	if (c >= 48 && c <= 57)
+	size_t	i;
+
+	i = 0;
+	while (i < size - 1 && src[i] != '\0')
 	{
-		return (1);
+		dst[i] = src[i];
+		i++;
 	}
-	return (0);
+	if (size - 1 != 0)
+		dst[i] = '\0';
+	while (src[i] != '\0')
+		i++;
+	return (i);
 }

@@ -1,20 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 21:32:49 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/21 10:50:28 by bposa            ###   ########.fr       */
+/*   Created: 2023/11/19 13:44:26 by bposa             #+#    #+#             */
+/*   Updated: 2023/11/20 16:50:14 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
+#include "libft.h"
+
+char	*ft_strchr(const char *s, int c)
 {
-	if (c >= 48 && c <= 57)
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
 	{
-		return (1);
+		if (s[i] == (char)c)
+		{
+			return ((char *)&s[i]);
+		}
+		i++;
+	}
+	if (s[i] == (char)c)
+	{
+		return ((char *)&s[i]);
 	}
 	return (0);
 }

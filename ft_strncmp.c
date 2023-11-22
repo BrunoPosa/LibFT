@@ -1,20 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 21:32:49 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/21 10:50:28 by bposa            ###   ########.fr       */
+/*   Created: 2023/11/20 15:08:50 by bposa             #+#    #+#             */
+/*   Updated: 2023/11/20 19:55:20 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
+#include "libft.h"
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	if (c >= 48 && c <= 57)
+	size_t i;
+
+	i = 0;
+	if (n == 0)
 	{
-		return (1);
+		return (0);
 	}
-	return (0);
+	while (i < n - 1 && (s1[i] != '\0' || s2[i] != '\0'))
+	{
+		if (s1[i] != s2[i])
+		{
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		}
+		i++;
+	}
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

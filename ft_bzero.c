@@ -6,7 +6,7 @@
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 21:03:13 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/03 15:17:02 by bposa            ###   ########.fr       */
+/*   Updated: 2023/11/10 20:36:40 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	ft_bzero(void *s, size_t n)
 {
 	unsigned char	*str;
-	size_t	i;
+	size_t			i;
 
 	str = s;
 	i = 0;
-	while(str[i] != '\0' && i < n)
+	while (str[i] != '\0' && i < n)
 	{
 		str[i] = 0;
 		i++;

@@ -6,7 +6,7 @@
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 18:08:58 by bposa             #+#    #+#             */
-/*   Updated: 2023/10/28 14:23:44 by bposa            ###   ########.fr       */
+/*   Updated: 2023/11/10 20:50:02 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 size_t	ft_strlen(const char *s)
 {
-	const char	*str;
+	size_t	i;
 
-	str = s;
-	while(*s)
-		s++;
-	return (s - str);
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }
