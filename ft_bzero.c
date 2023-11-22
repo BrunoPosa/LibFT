@@ -6,11 +6,11 @@
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 21:03:13 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/10 20:36:40 by bposa            ###   ########.fr       */
+/*   Updated: 2023/11/22 15:13:49 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {

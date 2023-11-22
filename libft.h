@@ -6,7 +6,7 @@
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 22:06:23 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/21 11:50:59 by bposa            ###   ########.fr       */
+/*   Updated: 2023/11/22 14:55:35 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,7 @@ void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 int		ft_atoi(const char *str);
+void	*ft_calloc(size_t count, size_t size);
+
 
 #endif

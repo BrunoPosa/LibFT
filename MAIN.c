@@ -1,4 +1,4 @@
-#include "../libft-local/libft.h"
+#include "../libft/libft.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdio.h>
@@ -23,6 +23,7 @@ void	*ft_memchr(const void *s, int c, size_t n);
 int ft_memcmp(const void *s1, const void *s2, size_t n);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 int	ft_atoi(const char *str);
+void	*ft_calloc(size_t count, size_t size);
 
 /*// -- isalpha --
 int	main(void)
@@ -438,25 +439,48 @@ int	main(void)
 	return (0);
 }
 */
-// -- atoi --
+/*// -- atoi --
 int	main(void)
 {
 	
-	// char s[100] = "\t\n\v+125abc";
-	// char s2[100] = "125ab";
+	char s[100] = "\t\n +125abc";
+	char s2[100] = "12 5ab";
 	char s3[100] = "-085";
-	// char *s4= "955";
-	// char *s5 = "56 1";
+	char *s4= "955";
+	char *s5 = "56 1";
+	char *s6 = "+4147483649907134698314968139";
+	char *s7 = "-4147483649907134698314968139";
+	char *s8 = "_\t -4147483649907134698314 96a8139";
+	char *s9 = "-4000000000";
 
 	
-	// printf("1_\nOG:%d\nft:%d\n", atoi(s), ft_atoi(s));
-	// printf("2_\nOG:%d\nft:%d\n", atoi(s2), ft_atoi(s2));
-	// printf("3_\nOG:%d\nft:%d\n", atoi("\n 11"), ft_atoi("\n 11"));
-	// printf("4_\nOG:%d\nft:%d\n", atoi("\n-90 82"), ft_atoi("\n-90 82"));
+	printf("1_\nOG:%d\nft:%d\n", atoi(s), ft_atoi(s));
+	printf("2_\nOG:%d\nft:%d\n", atoi(s2), ft_atoi(s2));
+	printf("3_\nOG:%d\nft:%d\n", atoi("\n 11"), ft_atoi("\n 11"));
+	printf("4_\nOG:%d\nft:%d\n", atoi("\n-90 82"), ft_atoi("\n-90 82"));
 	printf("5_\nOG:%d\nft:%d\n", atoi(s3), ft_atoi(s3));
-	// printf("6_\nOG:%d\nft:%d\n", atoi(s4), ft_atoi(s4));
-	// printf("7_\nOG:%d\nft:%d\n", atoi(s5), ft_atoi(s5));
-
+	printf("6_\nOG:%d\nft:%d\n", atoi(s4), ft_atoi(s4));
+	printf("7_\nOG:%d\nft:%d\n", atoi(s5), ft_atoi(s5));
+	printf("8_\nOG:%d\nft:%d\n", atoi(s6), ft_atoi(s6));
+	printf("9_\nOG:%d\nft:%d\n", atoi(s7), ft_atoi(s7));
+	printf("10_\nOG:%d\nft:%d\n", atoi(s8), ft_atoi(s8));
+	printf("10_\nOG:%d\nft:%d\n", atoi(s9), ft_atoi(s9));
+	return (0);
+}
+*/
+// -- calloc -- 
+int	main(void)
+{
+	//1
+	printf("\nOG:|%p|, sizeof():|%zu|", calloc(30, 4), sizeof(calloc(30, 4)));
+	printf("\nft:|%p|, sizeof():|%zu|\n", ft_calloc(30, 4), sizeof(ft_calloc(30, 4)));
+	//2
+	printf("\nOG:|%p|, sizeof():|%zu|", calloc(0, 1), sizeof(calloc(0, 1)));
+	printf("\nft:|%p|, sizeof():|%zu|\n", ft_calloc(0, 1), sizeof(ft_calloc(0, 1)));	
+	//3
+	printf("\nOG:|%p|, sizeof():|%zu|", calloc(0, 0), sizeof(calloc(0, 0)));
+	printf("\nft:|%p|, sizeof():|%zu|\n", ft_calloc(0, 0), sizeof(ft_calloc(0, 0)));
+	printf("\n%zu", LONG_MAX);
 
 	return (0);
 }
