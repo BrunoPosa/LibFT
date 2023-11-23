@@ -246,12 +246,17 @@ int	main(void)
 }
 */
 /*// -- memmove --
-int	main(void)
+int	main(void) // not used this test except to start and overlap
 {
-	const char	src[] = "xxxx";
-	char	dest[] = "d";
-
-	printf("\nresult: %s", ft_memmove(dest, src, 3));
+	char	d[] = "aaaaaaaaaaaaaaa";
+	char	*s;
+	char	*str[3] = {"hello", "there"};
+	char	*dest = "hi";
+	
+	s = d - 2;
+	printf("\nOG:|%s| address:|%p|\nft:|%s| address:|%p|\n", memmove(d, s, 3), memmove(d, s, 3), ft_memmove(d, s, 3), ft_memmove(d, s, 3));
+	printf("\nOG:|%s| address:|%p|\nft:|%s| address:|%p|\n", memmove(dest, str[0], 3), memmove(dest, str[0], 3), ft_memmove(dest, str[0], 3), ft_memmove(dest, str[0], 3));
+	
 	return(0);
 }
 */
@@ -313,23 +318,26 @@ int	main(void)
 /*// -- strlcat --
 int	main(void)
 {
-	const char	*s = "hello";
-	char	d[15] = "Comoestas";
+	char	d[8] = "hello";
+	char	d2[8] = "hello";
+	
+	char	d3[12] = "HAHAHAHAHAH";
+	char	d4[12] = "HAHAHAHAHAH";
+	
+	char	d5[16] = "rrrrrrrrrrrrrrr";
+	char	d6[16] = "rrrrrrrrrrrrrrr";
+	
+	char	*s = "mopo";
+	char	*s2 = "lorem ipsum dolor sit amet";
+	
+	printf("1_\nOG:%zu, dest:|%s|", strlcat(d, s, sizeof(d)), d);
+	printf("\nft:%zu, dest:|%s|", ft_strlcat(d2, s, sizeof(d2)), d2);
 
-	printf("\nft_strlcat returns: %zu\nd: %s.\nsizeof(d): %zu", ft_strlcat(d, s, sizeof(d)), d, sizeof(d));
-	printf("\nstrlen of d: %zu", ft_strlen(d));
+	printf("\n2_\nOG:%zu, dest:|%s|", strlcat(d3, s, 5), d3);
+	printf("\nft:%zu, dest:|%s|", ft_strlcat(d4, s, 5), d4);
 
-	const char	*s2 = "Shops";
-	char	d2[5] = "desti";
-
-	printf("\n\n2) ft_strlcat returns: %zu\nd2: %s.\nsizeof(d2): %zu", ft_strlcat(d2, s2, sizeof(d2)), d2, sizeof(d2));
-	printf("\nstrlen of d2: %zu", ft_strlen(d2));
-
-	const char	*s3 = "abcd";
-	char	*d3 = "pqrstuvwxyz";
-
-	printf("\n\n3) ft_strlcat returns: %zu\nd3: %s.\nsizeof(d3): %zu", ft_strlcat(d3, s3, 1), d3, sizeof(d3));
-	printf("\nstrlen of d3: %zu", ft_strlen(d3));
+	printf("\n3_\nOG:%zu, dest:|%s|", strlcat(d5, s2, 5), d5);
+	printf("\nft:%zu, dest:|%s|\n", ft_strlcat(d6, s2, 5), d6);
 	return (0);
 }
 */
@@ -468,7 +476,7 @@ int	main(void)
 	return (0);
 }
 */
-// -- calloc -- 
+/*// -- calloc -- 
 int	main(void)
 {
 	//1
@@ -484,3 +492,4 @@ int	main(void)
 
 	return (0);
 }
+*/

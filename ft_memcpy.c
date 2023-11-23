@@ -6,7 +6,7 @@
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 21:39:42 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/10 20:41:06 by bposa            ###   ########.fr       */
+/*   Updated: 2023/11/23 10:54:08 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	size_t				i;
-	unsigned char		*d;
-	const unsigned char	*s;
+	size_t			i;
+	unsigned char	*d;
+	unsigned char	*s;
 
-	d = dst;
-	s = src;
+	d = (unsigned char *)dst;
+	s = (unsigned char *)src;
 	i = 0;
-	while (s != '\0' && i < n)
+	if (src == 0 && dst == 0)
+		return (0);
+	while (i < n)
 	{
 		d[i] = s[i];
 		i++;

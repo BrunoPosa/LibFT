@@ -6,7 +6,7 @@
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 22:06:23 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/22 14:55:35 by bposa            ###   ########.fr       */
+/*   Updated: 2023/11/23 09:20:21 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 size_t	ft_strlen(const char *s);
 void	*ft_memset(void *b, int c, size_t len);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
+void	*ft_memmove(void *dst, const void *src, size_t len);
 int		ft_isprint(int c);
 int		ft_isdigit(int c);
 int		ft_isascii(int c);
