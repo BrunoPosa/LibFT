@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/29 21:39:42 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/26 00:24:02 by bposa            ###   ########.fr       */
+/*   Created: 2023/11/24 12:00:06 by bposa             #+#    #+#             */
+/*   Updated: 2023/11/24 13:37:02 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t			i;
-	unsigned char	*d;
-	unsigned char	*s;
+	char			*str;
+	unsigned int	i;
 
-	d = (unsigned char *)dst;
-	s = (unsigned char *)src;
 	i = 0;
-	if (src == 0 && dst == 0)
+	if (!s || !f)
 		return (0);
-	while (i < n)
+	str = malloc (ft_strlen(s) * sizeof(char) + 1);
+	if (str == 0)
+		return (0);
+	while (s[i] != '\0')
 	{
-		d[i] = s[i];
+		str[i] = f(i, s[i]);
 		i++;
 	}
-	return (d);
+	str[i] = '\0';
+	return (str);
 }

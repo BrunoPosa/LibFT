@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/29 21:39:42 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/26 00:24:02 by bposa            ###   ########.fr       */
+/*   Created: 2023/11/23 19:23:35 by bposa             #+#    #+#             */
+/*   Updated: 2023/11/24 08:24:21 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
+#include <unistd.h>
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	ft_putnbr_fd(int n, int fd)
 {
-	size_t			i;
-	unsigned char	*d;
-	unsigned char	*s;
-
-	d = (unsigned char *)dst;
-	s = (unsigned char *)src;
-	i = 0;
-	if (src == 0 && dst == 0)
-		return (0);
-	while (i < n)
+	if (n == -2147483648)
 	{
-		d[i] = s[i];
-		i++;
+		write (fd, "-2147483648", 11 * sizeof(char));
 	}
-	return (d);
+	else if (n < 0)
+	{
+		n *= -1;
+		write (fd, "-", sizeof(char));
+	}
+	if (n > 9)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		write(fd, &"0123456789"[n % 10], sizeof(char));
+	}
+	else
+		write(fd, &"0123456789"[n], sizeof(char));
 }

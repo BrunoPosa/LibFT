@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 15:42:26 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/23 17:50:12 by bposa            ###   ########.fr       */
+/*   Created: 2023/11/26 13:25:28 by bposa             #+#    #+#             */
+/*   Updated: 2023/11/26 15:58:37 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+static int	ch_set_cmp(char c, char const *set)
+{
+	while (*set != '\0')
+	{
+		if (*set == c)
+			return (1);
+		set++;
+	}
+	return (0);
+}
+
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	i;
+	size_t	j;
 
+	if (!s1 || !set)
+		return (0);
+	if (*s1 == '\0')
+		return (ft_strdup(""));
 	i = 0;
-	if (size == 0)
-		return (ft_strlen(src));
-	while (i + 1 < size && src[i] != '\0')
-	{
-		dst[i] = src[i];
+	j = ft_strlen(s1) - 1;
+	while (s1[i] != '\0' && ch_set_cmp(s1[i], set))
 		i++;
-	}
-	if (size != 0)
-		dst[i] = '\0';
-	return (ft_strlen(src));
+	while (j > i && ch_set_cmp(s1[j], set))
+		j--;
+	return (ft_substr(s1, i, j - i + 1));
 }

@@ -24,6 +24,8 @@ int ft_memcmp(const void *s1, const void *s2, size_t n);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 int	ft_atoi(const char *str);
 void	*ft_calloc(size_t count, size_t size);
+char	*ft_strjoin(char const *s1, char const *s2);
+
 
 /*// -- isalpha --
 int	main(void)
@@ -493,3 +495,56 @@ int	main(void)
 	return (0);
 }
 */
+/*// -- striteri --
+static void	to_lower(unsigned int i, char *s)
+{
+	s[i] = s[i] + ('a' - 'A');
+}
+// striteri function goes here
+int	main(void)
+{
+	char	str[] = "HELLO"; // Lesson: string literal is not modifyable, array of characters is
+	ft_striteri(str, to_lower);
+	printf("\nstr:%s\n", str);
+
+	return (0);
+}
+*/
+/*// -- substr -- 
+int	main(void)
+{
+	char	*result =  ft_substr("i just want this part #############", 0, 22);
+	printf("\n1	|%s|normal\n", result);
+	
+	char	*result2 =  ft_substr("", 0, 1);
+	printf("\n2	|%s| empty s\n", result2);
+
+	char	*result3 =  ft_substr("hello", 0, 0);
+	printf("\n3	|%s| len 0\n", result3);
+	
+	char	*result4 =  ft_substr("hello", 0, 10);
+	printf("\n4	|%s| len > s\n", result4);
+	
+	char	*result5 =  ft_substr("hello", 0, 5);
+	printf("\n5	|%s| len == s\n", result5);
+
+	char	*result6 =  ft_substr("tripouille", 1, 1);
+	printf("\n6	|%s|\n", result6);
+	
+	return (0);
+}
+*/
+// -- strjoin --
+int	main(void)
+{
+	char	*result =  ft_strjoin("Hello", "world");
+	printf("\n1 |%s|normal\n", result);
+printf("1a|%d|end check\n", result[10]);
+
+	char	*result2 =  ft_strjoin("", "world");
+	printf("\n2 |%s|normal\n", result2);
+if(result2[300] == '\0')
+	printf("yes");
+
+	return (0);
+}
