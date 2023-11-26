@@ -6,7 +6,7 @@
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:06:37 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/26 23:24:23 by bposa            ###   ########.fr       */
+/*   Updated: 2023/11/26 23:54:48 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ char	**ft_split(char const *s, char c)
 	/*search delimiting char*/
 	/*put substring into index of array - keep putting them in loop*/
 	/*free() necessary things*/
+	
 	char	**arr;
 	size_t	i;
 	size_t	j;
