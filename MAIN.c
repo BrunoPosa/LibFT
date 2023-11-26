@@ -25,6 +25,8 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 int	ft_atoi(const char *str);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_itoa(int n);
+
 
 
 /*// -- isalpha --
@@ -534,7 +536,7 @@ int	main(void)
 	return (0);
 }
 */
-// -- strjoin --
+/*// -- strjoin --
 int	main(void)
 {
 	char	*result =  ft_strjoin("Hello", "world");
@@ -548,3 +550,23 @@ if(result2[300] == '\0')
 
 	return (0);
 }
+*/
+/*// -- itoa -- 
+int	main(void)
+{
+	printf("num:%d, returns: %d\n", 10, ft_numlen(10));
+	printf("num:%d, returns: %d\n", -10, ft_numlen(-10));
+	printf("num:%d, returns: %d\n", 0, ft_numlen(0));
+	printf("num:%d, returns: %d\n", 8, ft_numlen(8));
+	printf("num:%d, returns: %d\n", -243, ft_numlen(-243));
+	printf("num:%d, returns: %d\n", -8, ft_numlen(-8));
+	printf("num:%d, returns: %s\n___\n", -342, ft_itoa(-342));
+	printf("num:%d, returns: %s\n___\n", -342, ft_itoa(-342));
+	printf("num:%d, returns: %s\n___\n", 10, ft_itoa(10));
+	printf("num:%d, returns: %s\n___\n", -10, ft_itoa(-10));
+	printf("num:%d, returns: %s\n___\n", 0, ft_itoa(0));
+	printf("num:%d, returns: %s\n___\n", -8, ft_itoa(-8));
+	printf("num:%d, returns: %s\n___\n", 8, ft_itoa(8));
+	return (0);
+}
+*/
