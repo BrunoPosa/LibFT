@@ -6,81 +6,104 @@
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:06:37 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/28 09:31:19 by bposa            ###   ########.fr       */
+/*   Updated: 2023/11/29 19:09:14 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-// #include <stdio.h>
-// #include <stdlib.h>
+// static char	**free_all(char **s, size_t i);
+// static size_t	word_counter(char const *s, char c);
+// static char	**array_filler(char const *src, char c, char **array);
+// char	**ft_split(char const *s, char c);
 
-// static void	free_all(char **arr, size_t i)
-// {
-// 	while (i > 0)
-// 	{
-// 		free((void *)arr[i]);
-// 		i--;
-// 	}
-// 	free((void *)arr[i]);
-// 	free((void *)*arr);
-// }
-
-static size_t	arr_size(char const *s, char c)
+static size_t	word_counter(char const *s, char c)
 {
-	size_t	arr_len;
+	size_t	word_count;
+	int		word_flag;
+
+	word_flag = 0;
+	word_count = 0;
+	while (*s)
+	{
+		if (*s != c && word_flag == 0)
+		{
+			word_count++;
+			word_flag = 1;
+		}
+		if (*s == c)
+			word_flag = 0;
+		s++;
+	}
+	return (word_count);
+}
+
+static char	**free_all(char **s, size_t i)
+{
+	while (i > 0)
+	{
+		free((void *)s[i]);
+		i--;
+	}
+	free((void *)s[i]);
+	free((void *)*s);
+	return (NULL);
+}
+
+static char	**array_filler(char const *src, char c, char **array)
+{
 	size_t	i;
-	char	*next;
+	int		word_flag;
 
 	i = 0;
-	if (!s || (*s == '\0' && c != '\0'))
-		return (0);
-	if (ft_strchr(&s[i], c) == 0)
-		return (1);
-	arr_len = 0;
-	while (ft_strchr(&s[i + 1], c) != NULL)
+	word_flag = 0;
+	while (*src) // or maybe (i < word_counter(src, c))
 	{
-		next = ft_strchr(&s[i + 1], c);
-		if (ft_strchr(&s[i], c) != next - 1)
-			arr_len++;
-		i += (next - &s[i]);
+		if (*src != c && word_flag == 0 && ft_strchr(src, c))
+		{
+			word_flag = 1;
+			array[i] = (char *)ft_calloc((ft_strchr(src, c) - src) + 1, sizeof(char));
+			if (!array[i])
+				return (free_all(array, i));
+			ft_strlcpy(array[i], src, (ft_strchr(src, c) - src) + 1);
+			i++;
+		}
+		if (*src != c && word_flag == 0 && !ft_strchr(src, c))
+			array[i] = (char *)ft_calloc(ft_strlen(src) + 1, sizeof(char));
+		if (*src == c)
+			word_flag = 0;
+		src++;
 	}
-	if (ft_strlen(&s[i + 1]) != 0)
-		arr_len++;
-	return (arr_len);
+	return (array);
 }
 
-// char	**ft_split(char const *s, char c)
-// {
-// 	char	**arr;
-// 	char	*next;
-// 	size_t	i;
 
-// 	i = 0;
-// 	if (!s)
-// 		return (0);
-// 	arr = (char **)malloc(arr_size(s, c) + 1);
-// 	while (*s != '\0')
-// 	{
-// 		if (ft_strchr(s + 1, c) != 0)
-// 			next = ft_strchr(s + 1, c);
-// 		else
-// 			next = (char *)s + ft_strlen(s);
-// 		arr[i] = ft_substr(s, 0, next - s);
-// 		if (!*arr[i])
-// 		{
-// 			free_all(arr, i);
-// 			return (0);
-// 		}
-// 		i++;
-// 		s = next;
-// 	}
-// 	arr[i + 1] = 0;
-// 	return (arr);
-// }
-
-int	main(void)
+char	**ft_split(char const *s, char c)
 {
-	printf("\n%zu words.", arr_size("||hello|||there", '|'));
-	printf("\n%zu words.", arr_size("Hello|world|there", '|'));
-	return (0);
+	char	**arr;
+	size_t	i;
+
+	i = 0;
+	arr = (char **)ft_calloc(word_counter(s, c) + 1, sizeof(char *));
+	if (!arr)
+		return (free_all(arr, i));
+	if (!array_filler(s, c, arr) || !array_filler(s, c, arr)[word_counter(s, c)])
+		return (free_all(arr, i));
+	// if (!array_filler(s, c, arr))
+	// 	return (free_all(arr, i));
+	return(arr);
 }
+
+// int main(void)
+// {
+// 	size_t	i = 0;
+// 	char	c = '|';
+// 	char	*str = "Hello|World|anyone|there|?";
+// 	printf("\n word_count:%zu\n", word_counter(str, c));
+	
+// 	while (i < word_counter(str, c))
+// 	{
+// 		printf("%s", ft_split(str, c)[i]);
+// 		i++;
+// 	}
+// 	return 0; 
+// }
