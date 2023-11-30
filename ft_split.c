@@ -6,14 +6,14 @@
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:06:37 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/30 10:12:34 by bposa            ###   ########.fr       */
+/*   Updated: 2023/11/30 13:59:44 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 // static char	**free_all(char **s, size_t i);
 // static size_t	word_counter(char const *s, char c);
-// static char	**array_filler(char const *src, char c, char **array);
+// static void	array_filler(char const *src, char c, char **array);
 // char	**ft_split(char const *s, char c);
 
 static size_t	word_counter(char const *s, char c)
@@ -45,35 +45,38 @@ static char	**free_all(char **s, size_t i)
 		i--;
 	}
 	free((void *)s[i]);
-	free((void **)s);
+	free((void *)s); // kako ovo napisati? freeujem array stringova, nakon sto sam freeovao stringove
 	return (NULL);
 }
 
-static char	**array_filler(char const *src, char c, char **array)
+static void	array_filler(char const *src, char c, char **array)
 {
 	size_t	i;
 	int		word_flag;
 
 	i = 0;
-	word_flag = 0;
-	while (*src) // or maybe (i < word_counter(src, c))
+	while (ft_strchr(src, c)) // while not at final word right before the '\0'
 	{
-		if (*src != c && word_flag == 0 && ft_strchr(src, c))
+		if (*src != c && word_flag == 0)
 		{
 			word_flag = 1;
-			array[i] = (char *)ft_calloc((ft_strchr(src, c) - src) + 1, sizeof(char));
+			array[i] = ft_calloc((ft_strchr(src, c) - src) + 1, sizeof(char));
 			if (!array[i])
-				return (free_all(array, i));
+				free_all(array, i);
 			ft_strlcpy(array[i], src, (ft_strchr(src, c) - src) + 1);
 			i++;
 		}
-		if (*src != c && word_flag == 0 && !ft_strchr(src, c))
-			array[i] = (char *)ft_calloc(ft_strlen(src) + 1, sizeof(char));
 		if (*src == c)
 			word_flag = 0;
 		src++;
 	}
-	return (array);
+	// if (*src != c)
+	// {
+	array[i] = (char *)ft_calloc(ft_strlen(src) + 1, sizeof(char));
+	if (!array[i])
+		free_all(array, i);
+	ft_strlcpy(array[i], src, ft_strlen(src) + 1);
+	// }
 }
 
 
@@ -92,12 +95,13 @@ char	**ft_split(char const *s, char c)
 	arr = (char **)ft_calloc(word_count + 1, sizeof(char *));
 	if (!arr)
 	{
-		return (free_all(arr, i));
+		return (free_all(arr, word_count));
 	}
-	if (!array_filler(s, c, arr)) // || !array_filler(s, c, arr)[word_count - 1]
-	{
-		return (free_all(arr, i));
-	}
+	array_filler(s, c, arr);
+	if (arr[word_count])
+		arr[word_count] = 0;
+	// if (!*arr)
+	// 	return (free_all(arr, word_count));
 	return(arr);
 }
 
@@ -105,10 +109,11 @@ char	**ft_split(char const *s, char c)
 // {
 // 	size_t	i = 0;
 // 	char	c = '|';
-// 	char	*str = "Hello|World|anyone|there|?";
-// 	printf("\n word_count:%zu\n", word_counter(str, c));
+// 	char	*str = "H||Wl";
 	
-// 	while (i < word_counter(str, c))
+// 	printf("\nword_count:%zu\n", word_counter(str, c));
+	
+// 	while (i < word_counter(str, c) + 1)
 // 	{
 // 		printf("%s\n", ft_split(str, c)[i]);
 // 		i++;
@@ -116,5 +121,5 @@ char	**ft_split(char const *s, char c)
 // 	return 0; 
 // }
 // TO DO
-//redo the condition for copying last part until end of string in array_filler so to free up lines
-//follow double free err 
+//tanja mi skrenula paznju da sam vracao double pointer iz funkcije array_filler kad nisam trebao
+//jer sam pozivao array double pointer 'by reference' u argumentu i operirao na njemu iz funkcije, dakle nista ne treba da vracam
