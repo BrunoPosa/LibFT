@@ -6,7 +6,7 @@
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:06:37 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/29 19:09:14 by bposa            ###   ########.fr       */
+/*   Updated: 2023/11/30 10:12:34 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char	**free_all(char **s, size_t i)
 		i--;
 	}
 	free((void *)s[i]);
-	free((void *)*s);
+	free((void **)s);
 	return (NULL);
 }
 
@@ -81,15 +81,23 @@ char	**ft_split(char const *s, char c)
 {
 	char	**arr;
 	size_t	i;
+	size_t	word_count;
 
+	if (!s)
+	{
+		return (0);
+	}
 	i = 0;
-	arr = (char **)ft_calloc(word_counter(s, c) + 1, sizeof(char *));
+	word_count = word_counter(s, c);
+	arr = (char **)ft_calloc(word_count + 1, sizeof(char *));
 	if (!arr)
+	{
 		return (free_all(arr, i));
-	if (!array_filler(s, c, arr) || !array_filler(s, c, arr)[word_counter(s, c)])
+	}
+	if (!array_filler(s, c, arr)) // || !array_filler(s, c, arr)[word_count - 1]
+	{
 		return (free_all(arr, i));
-	// if (!array_filler(s, c, arr))
-	// 	return (free_all(arr, i));
+	}
 	return(arr);
 }
 
@@ -102,8 +110,11 @@ char	**ft_split(char const *s, char c)
 	
 // 	while (i < word_counter(str, c))
 // 	{
-// 		printf("%s", ft_split(str, c)[i]);
+// 		printf("%s\n", ft_split(str, c)[i]);
 // 		i++;
 // 	}
 // 	return 0; 
 // }
+// TO DO
+//redo the condition for copying last part until end of string in array_filler so to free up lines
+//follow double free err 
