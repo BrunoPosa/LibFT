@@ -6,7 +6,7 @@
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:06:37 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/30 22:27:19 by bposa            ###   ########.fr       */
+/*   Updated: 2023/11/30 23:33:06 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,35 +52,35 @@ static char	**free_all(char **s, size_t i)
 	return (NULL);
 }
 
+size_t	word_len(const char *s, char c)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0' && s[i] != c)
+		i++;
+	return (i);
+}
+
 static void	array_filler(char const *src, char c, char **array)
 {
 	size_t	i;
-	int		word_flag;
 
 	i = 0;   
-	word_flag = 0;
-	while (ft_strchr(src, c)) // while not at final word right before the '\0'
+	while (*src)
 	{
-		if (*src != c && word_flag == 0)
+		while (*src && *src == c)
+			src++;
+		if (*src && *src != c)
 		{
-			word_flag = 1;
-			array[i] = (char *)malloc(((ft_strchr(src, c) - src) + 1) * sizeof(char));
+			array[i] = ft_substr(src, 0, word_len(src, c));
 			if (!array[i])
 				free_all(array, i);
-			ft_strlcpy(array[i], src, (ft_strchr(src, c) - src) + 1);
 			i++;
 		}
-		if (*src == c)
-			word_flag = 0;
-		src++;
+		src += word_len(src, c);
 	}
-	// if (*src != c)
-	// {
-	array[i] = (char *)malloc((ft_strlen(src) + 1) * sizeof(char));
-	if (!array[i])
-		free_all(array, i);
-	ft_strlcpy(array[i], src, ft_strlen(src) + 1);
-	// }
+	array[i] = 0;
 }
 
 
@@ -99,7 +99,7 @@ char	**ft_split(char const *s, char c)
 	arr = malloc((word_count + 1) * sizeof(char *)); // GOT RID OF TYPECASTING (char **)
 	if (!arr)
 	{
-		return (free_all(arr, word_count));
+		return (NULL); // no need for returning free_all(arr, word_count) bc i did not allocate anything
 	}
 	if (word_count > 0)	// this was missing before, but important!
 		array_filler(s, c, arr);
@@ -132,6 +132,6 @@ char	**ft_split(char const *s, char c)
 //Help from David B. for leak troubleshooting, Henri Patsi for shining a light onto the idea of allocating too much
 //Oliver H. for noticing exact place where I was allocating too much
 //Tanja for helping to rewrite a conditional as well as explaining the operations on arrays by reference
-//Ola for troubleshooting and sparring with me from the very beginning, and interrogating my code as well as encouraging. 
+//Ola for sharing her implementation of word_len and sparring with me from the very beginning, as well as interrogating my code and encouraging. 
 //Sunday for sharing his knowledge about a simpler way to count and iterate through words. 
 //And Many others including Jarno, Dmitri, Szabina, Pablo, etc for offering help and supporting
