@@ -6,7 +6,7 @@
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:06:37 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/30 23:33:06 by bposa            ###   ########.fr       */
+/*   Updated: 2023/12/01 19:40:08 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,14 @@ static size_t	word_counter(char const *s, char c)
 
 static char	**free_all(char **s, size_t i)
 {
-	// free((void *)s[i]);
 	while (i > 0)
 	{
-		// i--;
-		free((void *)s[--i]);
+		i--;
+		if (s[i])
+		{
+			free((void *)s[i]);
+		}
 	}
-	// free((void *)s[i]);
 	free(s); 			// kako ovo napisati? freeujem array stringova, nakon sto sam freeovao stringove
 	return (NULL);
 }
@@ -62,7 +63,7 @@ size_t	word_len(const char *s, char c)
 	return (i);
 }
 
-static void	array_filler(char const *src, char c, char **array)
+static char	**array_filler(char const *src, char c, char **array)
 {
 	size_t	i;
 
@@ -75,12 +76,13 @@ static void	array_filler(char const *src, char c, char **array)
 		{
 			array[i] = ft_substr(src, 0, word_len(src, c));
 			if (!array[i])
-				free_all(array, i);
+				return(free_all(array, i)); // obviously I do not need to free this index if it failed
 			i++;
 		}
 		src += word_len(src, c);
 	}
 	array[i] = 0;
+	return (array);
 }
 
 
@@ -101,13 +103,10 @@ char	**ft_split(char const *s, char c)
 	{
 		return (NULL); // no need for returning free_all(arr, word_count) bc i did not allocate anything
 	}
-	if (word_count > 0)	// this was missing before, but important!
-		array_filler(s, c, arr);
+	// if (word_count > 0)	// this was missing before, but important!
 	if (arr[word_count])
 		arr[word_count] = 0;
-	// if (!*arr)
-	// 	return (free_all(arr, word_count));
-	return(arr);
+	return(array_filler(s, c, arr));
 }
 
 // int main(void)
@@ -126,12 +125,13 @@ char	**ft_split(char const *s, char c)
 // 	return 0;
 // }
 
-// TO DO
+//Ola for sharing her implementation of word_len and sparring with me from the very beginning, as well as interrogating my code and encouraging. 
+// Also Ola for fixing the malloc check and fixing freeing. 
+//Aleksandr Dubov helped me learn my own code better and shined a light onto my free - that was the issue 
 //tanja mi skrenula paznju da sam vracao double pointer iz funkcije array_filler kad nisam trebao
 //jer sam pozivao array double pointer 'by reference' u argumentu i operirao na njemu iz funkcije, dakle nista ne treba da vracam. 
 //Help from David B. for leak troubleshooting, Henri Patsi for shining a light onto the idea of allocating too much
 //Oliver H. for noticing exact place where I was allocating too much
 //Tanja for helping to rewrite a conditional as well as explaining the operations on arrays by reference
-//Ola for sharing her implementation of word_len and sparring with me from the very beginning, as well as interrogating my code and encouraging. 
 //Sunday for sharing his knowledge about a simpler way to count and iterate through words. 
 //And Many others including Jarno, Dmitri, Szabina, Pablo, etc for offering help and supporting
