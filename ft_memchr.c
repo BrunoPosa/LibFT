@@ -6,11 +6,11 @@
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:49:27 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/20 19:46:52 by bposa            ###   ########.fr       */
+/*   Updated: 2023/12/05 15:30:49 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
@@ -23,5 +23,5 @@ void	*ft_memchr(const void *s, int c, size_t n)
 		s++;
 		n--;
 	}
-	return (0);
+	return (NULL);
 }

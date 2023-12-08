@@ -6,11 +6,11 @@
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:10:15 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/23 11:35:02 by bposa            ###   ########.fr       */
+/*   Updated: 2023/12/05 15:23:58 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
@@ -26,7 +26,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 			((unsigned char *)dst)[len - 1] = ((unsigned char *)src)[len - 1];
 			len--;
 		}
-		return ((void *)dst);
+		return (dst);
 	}
 	else
 	{
@@ -37,5 +37,5 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 			len--;
 		}
 	}
-	return ((void *)dst);
+	return (dst);
 }

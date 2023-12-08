@@ -6,18 +6,12 @@
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 10:56:11 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/19 12:58:01 by bposa            ###   ########.fr       */
+/*   Updated: 2023/12/05 15:09:30 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
 int	ft_toupper(int c)
 {
-	if (c < EOF && c > -UCHAR_MAX)
-	{
-		c = -c;
-	}
 	if (c >= 'a' && c <= 'z')
 	{
 		c -= ('a' - 'A');

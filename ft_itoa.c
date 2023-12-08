@@ -6,7 +6,7 @@
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 16:26:31 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/26 18:42:58 by bposa            ###   ########.fr       */
+/*   Updated: 2023/12/02 17:36:11 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*ft_itoa(int n)
 	num_len = ft_numlen(n_long);
 	str = (char *)malloc(sizeof(char) * (num_len + 1));
 	if (!str)
-		return (0);
+		return (NULL);
 	str[num_len] = '\0';
 	if (n_long < 0)
 	{

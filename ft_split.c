@@ -6,15 +6,11 @@
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:06:37 by bposa             #+#    #+#             */
-/*   Updated: 2023/12/01 19:40:08 by bposa            ###   ########.fr       */
+/*   Updated: 2023/12/02 17:29:03 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-// static char	**free_all(char **s, size_t i);
-// static size_t	word_counter(char const *s, char c);
-// static void	array_filler(char const *src, char c, char **array);
-// char	**ft_split(char const *s, char c);
 
 static size_t	word_counter(char const *s, char c)
 {
@@ -23,8 +19,10 @@ static size_t	word_counter(char const *s, char c)
 
 	word_flag = 0;
 	word_count = 0;
-	if (!s) //?
-		return (0); // ?
+	if (!s)
+	{
+		return (0);
+	}
 	while (*s)
 	{
 		if (*s != c && word_flag == 0)
@@ -33,7 +31,9 @@ static size_t	word_counter(char const *s, char c)
 			word_flag = 1;
 		}
 		if (*s == c)
+		{
 			word_flag = 0;
+		}
 		s++;
 	}
 	return (word_count);
@@ -46,20 +46,22 @@ static char	**free_all(char **s, size_t i)
 		i--;
 		if (s[i])
 		{
-			free((void *)s[i]);
+			free(s[i]);
 		}
 	}
-	free(s); 			// kako ovo napisati? freeujem array stringova, nakon sto sam freeovao stringove
+	free(s);
 	return (NULL);
 }
 
-size_t	word_len(const char *s, char c)
+static size_t	word_len(const char *s, char c)
 {
 	size_t	i;
 
 	i = 0;
 	while (s[i] != '\0' && s[i] != c)
+	{
 		i++;
+	}
 	return (i);
 }
 
@@ -67,16 +69,20 @@ static char	**array_filler(char const *src, char c, char **array)
 {
 	size_t	i;
 
-	i = 0;   
+	i = 0;
 	while (*src)
 	{
 		while (*src && *src == c)
+		{
 			src++;
+		}
 		if (*src && *src != c)
 		{
 			array[i] = ft_substr(src, 0, word_len(src, c));
 			if (!array[i])
-				return(free_all(array, i)); // obviously I do not need to free this index if it failed
+			{
+				return (free_all(array, i));
+			}
 			i++;
 		}
 		src += word_len(src, c);
@@ -84,7 +90,6 @@ static char	**array_filler(char const *src, char c, char **array)
 	array[i] = 0;
 	return (array);
 }
-
 
 char	**ft_split(char const *s, char c)
 {
@@ -98,40 +103,10 @@ char	**ft_split(char const *s, char c)
 	}
 	i = 0;
 	word_count = word_counter(s, c);
-	arr = malloc((word_count + 1) * sizeof(char *)); // GOT RID OF TYPECASTING (char **)
+	arr = malloc((word_count + 1) * sizeof(char *));
 	if (!arr)
 	{
-		return (NULL); // no need for returning free_all(arr, word_count) bc i did not allocate anything
+		return (NULL);
 	}
-	// if (word_count > 0)	// this was missing before, but important!
-	if (arr[word_count])
-		arr[word_count] = 0;
-	return(array_filler(s, c, arr));
+	return (array_filler(s, c, arr));
 }
-
-// int main(void)
-// {
-// 	size_t	i = 0;
-// 	char	c = '|';
-// 	char	*str = "|||||";
-	
-// 	printf("\nword_count:%zu\n", word_counter(str, c));
-	
-// 	while (i < word_counter(str, c) + 1)
-// 	{
-// 		printf("%s\n", ft_split(str, c)[i]);
-// 		i++;
-// 	}
-// 	return 0;
-// }
-
-//Ola for sharing her implementation of word_len and sparring with me from the very beginning, as well as interrogating my code and encouraging. 
-// Also Ola for fixing the malloc check and fixing freeing. 
-//Aleksandr Dubov helped me learn my own code better and shined a light onto my free - that was the issue 
-//tanja mi skrenula paznju da sam vracao double pointer iz funkcije array_filler kad nisam trebao
-//jer sam pozivao array double pointer 'by reference' u argumentu i operirao na njemu iz funkcije, dakle nista ne treba da vracam. 
-//Help from David B. for leak troubleshooting, Henri Patsi for shining a light onto the idea of allocating too much
-//Oliver H. for noticing exact place where I was allocating too much
-//Tanja for helping to rewrite a conditional as well as explaining the operations on arrays by reference
-//Sunday for sharing his knowledge about a simpler way to count and iterate through words. 
-//And Many others including Jarno, Dmitri, Szabina, Pablo, etc for offering help and supporting

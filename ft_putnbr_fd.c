@@ -6,11 +6,10 @@
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 19:23:35 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/24 08:24:21 by bposa            ###   ########.fr       */
+/*   Updated: 2023/12/05 15:19:48 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include <unistd.h>
 
 void	ft_putnbr_fd(int n, int fd)

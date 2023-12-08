@@ -6,7 +6,7 @@
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 13:25:28 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/26 15:58:37 by bposa            ###   ########.fr       */
+/*   Updated: 2023/12/02 18:37:39 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t	j;
 
 	if (!s1 || !set)
-		return (0);
+		return (NULL);
 	if (*s1 == '\0')
 		return (ft_strdup(""));
 	i = 0;

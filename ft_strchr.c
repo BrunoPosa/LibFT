@@ -6,11 +6,11 @@
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 13:44:26 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/20 16:50:14 by bposa            ###   ########.fr       */
+/*   Updated: 2023/12/05 15:18:17 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
 char	*ft_strchr(const char *s, int c)
 {
@@ -29,5 +29,5 @@ char	*ft_strchr(const char *s, int c)
 	{
 		return ((char *)&s[i]);
 	}
-	return (0);
+	return (NULL);
 }

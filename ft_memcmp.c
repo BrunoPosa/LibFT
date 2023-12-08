@@ -6,11 +6,11 @@
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 18:00:27 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/22 11:25:20 by bposa            ###   ########.fr       */
+/*   Updated: 2023/12/05 15:29:16 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
@@ -25,7 +25,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	{
 		return (0);
 	}
-	while (i < n - 1)
+	while (i + 1 < n)
 	{
 		if (p1[i] != p2[i])
 		{

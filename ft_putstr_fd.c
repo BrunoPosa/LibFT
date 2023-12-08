@@ -6,18 +6,22 @@
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 19:00:00 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/23 19:14:22 by bposa            ###   ########.fr       */
+/*   Updated: 2023/12/05 15:19:14 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include <unistd.h>
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	while (*s != '\0')
+	size_t	i;
+
+	i = 0;
+	if (!s)
+		return ;
+	while (s[i] != '\0')
 	{
-		write (fd, s, sizeof(*s));
-		s++;
+		write (fd, &s[i], sizeof(char));
+		i++;
 	}
 }

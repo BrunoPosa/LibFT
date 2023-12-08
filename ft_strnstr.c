@@ -6,7 +6,7 @@
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 20:19:39 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/21 08:06:24 by bposa            ###   ########.fr       */
+/*   Updated: 2023/12/02 18:19:42 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,5 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 		haystack++;
 		len--;
 	}
-	return (0);
+	return (NULL);
 }

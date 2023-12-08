@@ -6,7 +6,7 @@
 /*   By: bposa <bposa@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 22:06:23 by bposa             #+#    #+#             */
-/*   Updated: 2023/11/26 13:29:35 by bposa            ###   ########.fr       */
+/*   Updated: 2023/12/03 16:06:04 by bposa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,7 @@
 # define LIBFT_H
 
 # include <stdlib.h>
-# include <string.h>
-# include <stddef.h>
-# include <ctype.h>
-# include <limits.h>
-# include <stdio.h>
+# include <unistd.h>
 
 size_t	ft_strlen(const char *s);
 void	*ft_memset(void *b, int c, size_t len);
@@ -52,5 +48,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
+char	*ft_itoa(int num);
+char	**ft_split(char const *s, char c);
 
 #endif
